@@ -1,7 +1,7 @@
 import { getToken } from "./users-service";
 import { sendRequest } from './sendRequest'
 
-const BASE_URL = "./api/items";
+const BASE_URL = "/api/items";
 
 export function getAll() {
     return sendRequest(BASE_URL);
