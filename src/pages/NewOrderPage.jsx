@@ -1,17 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import * as itemsAPI from "../utilities/items-api";
 
 const NewOrderPage = () => {
     const [menuItems, setMenuItems] = useState([]);
+    //create and initialize to an empty array a categories ref
+    const categoriesRef = useRef([]);
 
-    // - Fetch the menuItems from the server via AJAX
-    // - When the data comes back, call setMenuItems to save in state
+    // Add this useEffect with a dependency array
     useEffect(() => {
-        console.log("NewOrderPage rendered");
-    });
+        const getItems = async () => {
+            const items = await itemsAPI.getAll();
+            //compute the categories after items have arrived
+            categoriesRef.current = items.reduce((cats, item) => {
+                const cat = item.category.name;
+                return cats.includes(cat) ? cats : [...cats, cat];
+            }, []);
+            setMenuItems(items);
+        };
+        getItems();
+    }, []);
 
     return (
         <>
-            <h1>NewOrderPage</h1>
+            <h1>New Order Page</h1>
             <button onClick={setMenuItems}>Trigger re-render</button>
         </>
     );
