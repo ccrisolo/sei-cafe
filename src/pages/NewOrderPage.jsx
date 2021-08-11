@@ -27,19 +27,21 @@ const NewOrderPage = ({ user, setUser }) => {
             setActiveCat(items[0].category.name);
         };
         getItems();
-
     }, []);
-
 
     return (
         <main className='NewOrderPage'>
             <aside>
-                {/* <Logo /> */}
-                {/* <CategoryList /> */}
+                <Logo />
+                <CategoryList
+                    activeCat={activeCat}
+                    setActiveCat={setActiveCat}
+                    categories={categoriesRef.current}
+                />
                 <Link to='/orders' className='button btn-sm'>
                     PREVIOUS ORDERS
                 </Link>
-                {/* <UserLogOut /> */}
+                <UserLogOut user={user} setUser={setUser} />
             </aside>
             <MenuList
                 menuItems={menuItems}

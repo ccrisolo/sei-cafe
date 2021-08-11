@@ -1,12 +1,10 @@
-import React from 'react'
+import './Logo.css';
 
-const Logo = () => {
-
-    return(
-        <div>
-            Logo
-        </div>
-    )
+export default function Logo() {
+  return (
+    <div className="Logo">
+      <div>SEI</div>
+      <div>CAFE</div>
+    </div>
+  );
 }
-
-export default Logo;

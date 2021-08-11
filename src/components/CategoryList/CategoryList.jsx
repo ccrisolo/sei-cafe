@@ -1,12 +1,17 @@
-import React from 'react'
+import "./CategoryList.css";
 
-const CategoryList = () => {
+const CategoryList = ({ categories, activeCat, setActiveCat }) => {
+    const cats = categories.map(cat => (
+        <li
+            key={cat}
+            className={cat === activeCat ? "active" : ""}
+            onClick={() => setActiveCat(cat)}
+        >
+            {cat}
+        </li>
+    ));
 
-    return(
-        <div>
-            CategoryList
-        </div>
-    )
-}
+    return <ul className='CategoryList'>{cats}</ul>;
+};
 
 export default CategoryList;
